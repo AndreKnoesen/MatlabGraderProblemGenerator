@@ -155,8 +155,8 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({ filename, content, onDow
       </button>
     </div>
     <pre
-      className="bg-[#1e1e2e] text-[#cdd6f4] text-xs font-mono p-4 overflow-auto scrollbar-thin"
-      style={{ maxHeight: '260px' }}
+      className="bg-[#1e1e2e] text-[#cdd6f4] text-sm font-mono p-4 overflow-auto scrollbar-thin"
+      style={{ maxHeight: '320px' }}
     >
       {content}
     </pre>
