@@ -11,7 +11,7 @@ AI-assisted MATLAB Grader problem authoring tool by [VeriQAI](https://www.linked
 
 ### Option A — Deployed app (recommended)
 
-Open [https://veriqai.github.io/MatlabGraderProblemGenerator/](https://veriqai.github.io/MatlabGraderProblemGenerator/) in Chrome or Edge.
+Open [https://andreknoesen.github.io/MatlabGraderProblemGenerator/](https://andreknoesen.github.io/MatlabGraderProblemGenerator/) in Chrome or Edge.
 
 ### Option B — Run locally
 
