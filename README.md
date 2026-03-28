@@ -1,0 +1,81 @@
+# MATLAB Grader Problem Generator
+
+AI-assisted MATLAB Grader problem authoring tool by [VeriQAI](https://www.linkedin.com/company/veriqai).
+
+> **MATLAB and MATLAB Grader are trademarks of The MathWorks, Inc.
+> This tool is not affiliated with or endorsed by MathWorks.**
+
+---
+
+## Usage
+
+### Option A — Deployed app (recommended)
+
+Open [https://veriqai.github.io/MatlabGraderProblemGenerator/](https://veriqai.github.io/MatlabGraderProblemGenerator/) in Chrome or Edge.
+
+### Option B — Run locally
+
+```bash
+git clone https://github.com/AndreKnoesen/MatlabGraderProblemGenerator.git
+cd MatlabGraderProblemGenerator
+npm install
+npm run dev
+# → http://localhost:3002/MatlabGraderProblemGenerator/
+```
+
+---
+
+## Workflow
+
+1. Enter your Anthropic API key — **create a dedicated key with a spending limit** at
+   [console.anthropic.com](https://console.anthropic.com) before use.
+2. Select a Claude model (Sonnet 4.6 recommended).
+3. Enter a learning objective and choose **Script** or **Function** problem type.
+4. Accept the usage conditions.
+5. Click **Generate 5 Problem Options** and select the ones you want to develop.
+6. Each selected problem is developed into 4 artifacts — review each one, then download.
+
+---
+
+## What gets generated
+
+For each selected problem:
+
+| File | Paste into MATLAB Grader |
+|---|---|
+| `*_description.txt` | Problem Description tab |
+| `solution.m` | Reference Solution tab |
+| `template.m` | Learner Template tab |
+| `all_tests.m` | Each `% === TEST N ===` section → separate Test Case |
+
+Test cases are written for **R2025b** (double-quoted `assessPattern` strings).
+
+---
+
+## API Key & Privacy
+
+- Your API key is used **only in your browser session** and sent **only to `api.anthropic.com`**.
+- It is **never stored, logged, or persisted** anywhere — gone on page refresh.
+- A Content Security Policy (`connect-src https://api.anthropic.com`) restricts all
+  network calls to Anthropic's API only.
+
+---
+
+## Deployment
+
+```bash
+npm run deploy      # builds and pushes to gh-pages branch
+git push origin main
+```
+
+---
+
+## Disclaimer
+
+Generated content is produced by an AI model and must be reviewed before use in any
+assessment context. This tool is provided "as is" under the MIT licence without warranty
+of any kind. VeriQAI accepts no liability for inaccurate, incomplete, or harmful content.
+
+## License
+
+MIT — VeriQAI
