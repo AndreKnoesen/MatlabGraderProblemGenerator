@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import JSZip from 'jszip';
 
 interface ClaudePrompt {
   system: string;
@@ -72,4 +73,21 @@ export function downloadText(content: string, filename: string): void {
 
 export function toSnakeCase(s: string): string {
   return s.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+}
+
+export async function downloadZip(
+  files: { filename: string; content: string }[],
+  zipName: string
+): Promise<void> {
+  const zip = new JSZip();
+  files.forEach(({ filename, content }) => zip.file(filename, content));
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = zipName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 100);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { AppState, Artifacts, ReviewTab } from '../types';
 import { Button, Card, DifficultyBadge, ProblemTypeBadge } from './Common';
-import { downloadText, toSnakeCase } from '../api';
+import { downloadText, downloadZip, toSnakeCase } from '../api';
 import { CheckCircle, Download } from 'lucide-react';
 
 interface Props {
@@ -20,9 +20,11 @@ const Stage3Done: React.FC<Props> = ({ state, onStartOver }) => {
   const { generatedProblems } = state;
 
   const handleDownloadAll = (artifacts: Artifacts, title: string) => {
-    FILE_CONFIG.forEach((f, i) => {
-      setTimeout(() => downloadText(artifacts[f.key], f.getFilename(title)), i * 200);
-    });
+    const files = FILE_CONFIG.map(f => ({
+      filename: f.getFilename(title),
+      content: artifacts[f.key],
+    }));
+    downloadZip(files, `${toSnakeCase(title)}.zip`);
   };
 
   return (

@@ -3,7 +3,7 @@ import type { AppState, ReviewTab, Artifacts } from '../types';
 import {
   Button, Card, CodeViewer, LogPanel, ErrorPanel, StepChecklist,
 } from './Common';
-import { downloadText, toSnakeCase } from '../api';
+import { downloadText, downloadZip, toSnakeCase } from '../api';
 
 interface Props {
   state: AppState;
@@ -38,11 +38,11 @@ const Stage2Generate: React.FC<Props> = ({ state, setState, onNext, onRetry }) =
     : null;
 
   const handleDownloadAll = (artifacts: Artifacts, title: string) => {
-    TAB_CONFIG.forEach((tab, i) => {
-      const content = artifacts[tab.key];
-      const filename = tab.getFilename(title);
-      setTimeout(() => downloadText(content, filename), i * 200);
-    });
+    const files = TAB_CONFIG.map(tab => ({
+      filename: tab.getFilename(title),
+      content: artifacts[tab.key],
+    }));
+    downloadZip(files, `${toSnakeCase(title)}.zip`);
   };
 
   return (
