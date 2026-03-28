@@ -19,11 +19,13 @@ export const Header: React.FC = () => (
         href="https://github.com/VeriQAi"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-shrink-0 ml-4 mt-0.5"
+        className="flex-shrink-0 ml-4"
       >
-        <span className="inline-flex items-center gap-1 bg-brand-accent hover:bg-blue-500 transition-colors text-white text-xs font-bold px-3 py-1.5 rounded-full">
-          VeriQAI
-        </span>
+        <img
+          src={`${import.meta.env.BASE_URL}veriqai-logo.png`}
+          alt="VeriQAI"
+          className="h-12 w-auto hover:opacity-80 transition-opacity"
+        />
       </a>
     </div>
   </header>
