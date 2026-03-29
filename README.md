@@ -84,6 +84,10 @@ Generated content is produced by an AI model and must be reviewed before use in 
 assessment context. This tool is provided "as is" under the MIT licence without warranty
 of any kind. VeriQAI accepts no liability for inaccurate, incomplete, or harmful content.
 
+## Built With
+
+*React, Vite, Tailwind CSS, JSZip, Lucide, and the Anthropic SDK.*
+
 ## License
 
 MIT — VeriQAI
