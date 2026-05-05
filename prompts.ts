@@ -31,7 +31,7 @@ All problems must be of the problem_type requested by the user.`,
   };
 }
 
-export function buildDescriptionPrompt(option: ProblemOption, objective: string, classAssessment?: ClassAssessment) {
+export function buildDescriptionPrompt(option: ProblemOption, objective: string, classAssessment?: ClassAssessment, showHints = true) {
   // ── Object usage ─────────────────────────────────────────────────────────
   if (option.problem_type === 'Object usage') {
     const outputVar = option.suggested_variable;
@@ -60,10 +60,9 @@ REQUIRED SECTIONS (in this order):
 4. The complete script skeleton with exactly two % YOUR CODE HERE blanks — one for
    creating the object array, one for computing ${outputVar}. Surround the skeleton
    with a code block (use plain indentation, no fences).
-
-5. Example — show how to create a single object and access one property.
-
-6. Before you submit:
+${showHints
+  ? `\n5. Example — show how to create a single object and access one property.\n\n6. Before you submit:`
+  : `\nDo NOT include any hints or worked examples.\n\n5. Before you submit:`}
    - How to verify the array exists and has the right length.
    - How to inspect individual elements.
    - How to check ${outputVar}.`,
@@ -96,7 +95,9 @@ REQUIRED SECTIONS (in this order):
 - Before you submit: basic test (a + b), hardcoding check (different inputs), symmetry check
   where mathematically appropriate (a + b vs b + a).`
       : `
-- Hints must illustrate the concept using a different, analogous class (not ${className} itself).
+${showHints
+  ? `- Hints must illustrate the concept using a different, analogous class (not ${className} itself).`
+  : `- Do NOT include any hints or worked examples — students must discover the approach independently.`}
 - Include a "Before you submit" section with a short local-testing snippet the student can paste
   into the MATLAB command window.`;
 
@@ -133,7 +134,7 @@ Problem type: ${option.problem_type}.
 Learning objective: ${objective}.
 Write a clear student-facing problem description for MATLAB Grader.
 Plain text only — no markdown headers or bold/italic markers.
-Include: a 2–3 sentence overview, numbered step-by-step instructions, and hints.${fnNote}`,
+Include: a 2–3 sentence overview and numbered step-by-step instructions.${showHints ? ' Include hints to help the student get started.' : ' Do NOT include any hints or worked examples — the student must discover the approach independently.'}${fnNote}`,
     user: 'Write the problem description.',
     maxTokens: 700,
   };

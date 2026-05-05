@@ -60,6 +60,7 @@ export interface AppState {
   problemType: ProblemType;
   classAssessment: ClassAssessment;
   disclosureAccepted: boolean;
+  showHints: boolean;
   // Stage 1
   options: ProblemOption[];
   selectedIds: number[];
@@ -83,6 +84,7 @@ export const INITIAL_STATE: AppState = {
   problemType: 'Script',
   classAssessment: 'Constructor — property assignment',
   disclosureAccepted: false,
+  showHints: true,
   options: [],
   selectedIds: [],
   generatedProblems: [],

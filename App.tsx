@@ -57,7 +57,7 @@ const App: React.FC = () => {
     problemIdx: number,
     currentState: AppState
   ) => {
-    const { apiKey, model, objective, options, selectedIds, classAssessment } = currentState;
+    const { apiKey, model, objective, options, selectedIds, classAssessment, showHints } = currentState;
     const selectedProblems = options.filter(o => selectedIds.includes(o.id));
     const option = selectedProblems[problemIdx];
 
@@ -73,7 +73,7 @@ const App: React.FC = () => {
     try {
       // Step 0 – Description
       const description = await callClaude(
-        buildDescriptionPrompt(option, objective, classAssessment), apiKey, model, addLog
+        buildDescriptionPrompt(option, objective, classAssessment, showHints), apiKey, model, addLog
       );
       setState(s => ({ ...s, generatingStep: 1 }));
 

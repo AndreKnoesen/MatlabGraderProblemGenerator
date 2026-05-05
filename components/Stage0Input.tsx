@@ -32,7 +32,7 @@ const DISCLOSURE_TEXT = [
 
 const Stage0Input: React.FC<Props> = ({ state, setState, onGenerate, error }) => {
   const {
-    apiKey, showApiKey, model, objective, numOptions, problemType, classAssessment, disclosureAccepted,
+    apiKey, showApiKey, model, objective, numOptions, problemType, classAssessment, disclosureAccepted, showHints,
   } = state;
 
   const set = <K extends keyof AppState>(key: K, value: AppState[K]) =>
@@ -212,6 +212,24 @@ const Stage0Input: React.FC<Props> = ({ state, setState, onGenerate, error }) =>
             </div>
           )}
         </fieldset>
+
+        <div className="border-t border-gray-100 pt-4">
+          <SectionLabel>Hints in Student-Facing Description</SectionLabel>
+          <label className="flex items-start gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={showHints}
+              onChange={e => set('showHints', e.target.checked)}
+              className="mt-0.5 accent-brand-accent"
+            />
+            <span className="text-sm text-gray-700">
+              Include hints and worked examples in the problem description
+              <span className="block text-xs text-gray-400 mt-0.5">
+                Uncheck to omit all hints — students must discover the approach independently.
+              </span>
+            </span>
+          </label>
+        </div>
 
         <div className="border-t border-gray-100 pt-4">
           <SectionLabel>Number of Problem Options to Generate</SectionLabel>
